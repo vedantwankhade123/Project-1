@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="cart.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <div class="cart-container">
+    <h2>Your Shopping Cart</h2>
+    <div class="cart-items">
+      <!-- Cart items will be dynamically added here -->
+    </div>
+    <div class="cart-total">
+      <p>Total: <span id="total-price">$0.00</span></p>
+      <button id="checkout-btn"><i class="fas fa-shopping-cart"></i> Checkout</button>
+      <button id="remove-btn">Remove Items</button>
+    </div>
+  </div>
+
+  <script src="cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url(icons/bglight.png);
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+
+}
+
+.cart-container {
+    width: 600px;
+    height: 500px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.cart-items {
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.cart-item .item-details {
+    flex-grow: 1;
+}
+
+.cart-item .item-name {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.cart-item .item-price {
+    font-weight: 500;
+    color: #666;
+}
+
+.cart-total {
+    margin-top: 30px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+#checkout-btn {
+    padding: 12px 12px;
+    background-color: aquamarine;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+#checkout-btn:hover {
+    background-color: green;
+}
+
+#checkout-btn i {
+    margin-right: 8px;
+}
+#remove-btn {
+    padding: 12px 12px;
+    background-color: aquamarine;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+#remove-btn:hover {
+    background-color: green;
+}
+#remove-btn i {
+    margin-right: 8px;
+    
+}

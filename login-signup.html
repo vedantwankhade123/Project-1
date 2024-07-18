@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup/Login - Become a Verified User</title>
+    <link rel="stylesheet" href="login-signup.css">
+</head>
+<body>
+    <div class="container">
+        <div id="loginSection">
+            <h2>Login Form</h2>
+            <form id="loginForm">
+                <label for="loginCredential">Email / Username</label>
+                <input type="text" id="loginCredential" name="loginCredential" required>
+                <span id="loginCredentialError" class="error"></span>
+
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+                <span id="loginPasswordError" class="error"></span>
+
+                <button type="submit">Login</button>
+                <a href="#" id="forgotPassword">Forgot Password?</a>
+            </form>
+            <p>
+                Don't have an account?
+                <button class="link-button" id="showSignupForm">Signup</button>
+                <img class="bgshopping" src="bgImg/shoppinggraphic.jpg" alt="Shopping Graphics">
+            </p>
+        </div>
+        </div>
+        <div class="container">
+        <div id="signupSection" style="display: none;">
+            <h2>Signup Form</h2>
+            <form id="signupForm">
+                <label for="signupFirstName">First Name</label>
+                <input type="text" id="signupFirstName" name="signupFirstName" required>
+                <span id="signupFirstNameError" class="error"></span>
+
+                <label for="signupLastName">Last Name</label>
+                <input type="text" id="signupLastName" name="signupLastName" required>
+                <span id="signupLastNameError" class="error"></span>
+
+                <label for="signupMobile">Mobile Number</label>
+                <input type="tel" id="signupMobile" name="signupMobile" required>
+                <span id="signupMobileError" class="error"></span>
+
+                <label for="signupEmail">Email</label>
+                <input type="email" id="signupEmail" name="signupEmail" required>
+                <span id="signupEmailError" class="error"></span>
+
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" name="signupPassword" required>
+                <span id="signupPasswordError" class="error"></span>
+                
+                <button type="submit">Signup</button>
+            </form>
+            <p>
+                Already have an account?
+                <button class="link-button" id="showLoginForm">Login</button>
+            </p>
+        </div>
+    </div>
+
+    <script src="login-signup.js"></script>
+</body>
+</html>

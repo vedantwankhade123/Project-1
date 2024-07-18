@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalGoods - Your Local Online Marketplace</title>
+    <!-- Add CSS Packs for Color Grading -->
+    <link rel="stylesheet" href="your-color-pack.css">
+
+    <!-- Add Fonts from the Internet -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('icons/bglight.png');
+            background-size: cover;
+            background-position: top;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+        }
+
+        .navbar {
+            padding: 5px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 10px;
+            margin-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            margin-left: 40px;
+            color: white;
+        }
+
+        .navbar-links {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            gap: 20px;
+            /* Add gap between links */
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: white;
+            margin-right: 5px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            /* Add transition for smooth animation */
+            display: flex;
+            flex-direction: column;
+            /* Align icon and text vertically */
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            /* Position for absolute text */
+        }
+
+        .navbar-links a .text {
+            display: none;
+            /* Hide text by default */
+            position: absolute;
+            bottom: -20px;
+            /* Adjust text position */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .navbar-links a:hover .text {
+            display: block;
+            /* Show text on hover */
+        }
+
+        .navbar-links a:hover {
+            color: white;
+            transform: scale(1.1);
+            /* Increase size on hover */
+        }
+
+        .navbar-links a img {
+            width: 30px;
+            /* Adjust icon size */
+            height: auto;
+            /* Maintain aspect ratio */
+        }
+
+        .navbar-links a span {
+            font-size: 12px;
+            /* Adjust text size */
+            margin-top: 5px;
+            /* Add spacing between icon and text */
+        }
+
+        .account-icon {
+            width: 25px;
+            height: auto;
+            margin-right: 5px;
+        }
+
+        .cart-icon {
+            width: 30px;
+            /* Adjust to your desired width */
+            height: auto;
+            /* Maintain aspect ratio */
+            margin-right: 5px;
+        }
+
+        .notifications-icon {
+            width: 30px;
+            /* Adjust to your desired width */
+            height: auto;
+            /* Maintain aspect ratio */
+            margin-right: 5px;
+        }
+
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .search-input {
+            padding: 8px 35px 10px 20px;
+            border: 2px solid #050505;
+            border-radius: 12px;
+            width: 760px;
+            margin-left: 20px;
+            transition: all 0.3s ease;
+            font-weight: bolder;
+            color: rgb(0, 0, 0);
+        }
+
+        .search-input:focus {
+            width: 300px;
+        }
+
+        .search-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-icon {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .greet {
+            text-align: right;
+            text-align: center;
+            margin-top: 300px;
+            font-size: 32px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+            color: white;
+        }
+
+        .intro-line {
+            text-align: center;
+            margin-left: 300px;
+            margin-top: 20px;
+            font-size: 17px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: .15em solid #005710;
+            animation: typing 5s steps(110, end) infinite, blink-caret 0.75s step-end infinite;
+            color: white;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Typing animation */
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+
+            50% {
+                width: 60%;
+            }
+
+            50%,
+            100% {
+                width: 58.6%;
+                /* Hold the width at 66% for a longer duration */
+            }
+        }
+
+        /* Blinking cursor animation */
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: #005710;
+            }
+        }
+
+        /* Category section */
+        .category-section {
+            position: absolute;
+            top: 80px;
+            /* Adjust the top position */
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+
+
+        }
+
+        .category-title {
+            font-size: 15px;
+            margin-left: 100px;
+            /* Add some left margin */
+            margin-top: 95px;
+            color: white;
+        }
+
+        .category-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-right: 215px;
+        }
+
+        .category-links a {
+            text-decoration: none;
+            color: aquamarine;
+            margin: 5px;
+            margin-top: 2px;
+            padding: 8px 16px;
+            border: 2px solid aquamarine;
+            border-radius: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .category-links a:hover {
+            background-color: aquamarine;
+            color: black;
+        }
+
+
+        /* Add this CSS to display items in a horizontal row */
+        /* For Electronics */
+        #electronics {
+            margin-left: 150px;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            /* Enable horizontal scrolling */
+            gap: 20px;
+            /* Add space between items */
+
+        }
+
+        .electronics-section {
+            /* Remove the margin and border */
+            margin: 0;
+            border: none;
+            /* Add overflow-x to handle horizontal scrolling */
+            overflow-x: auto;
+        }
+
+        .electronics-section article {
+            /* Adjust width and height of each item */
+            width: 200px;
+            height: 300px;
+            /* Add margin and padding */
+            margin: 0;
+            padding: 10px;
+            /* Add border and border-radius */
+            border: 1px solid aquamarine;
+            border-radius: 10px;
+            /* Center align content */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Change background color */
+            background-color: #fff;
+        }
+
+        .electronics-section article img {
+            /* Adjust size of product image */
+            width: 150px;
+            height: 150px;
+            /* Add margin */
+            margin-bottom: 10px;
+        }
+
+        .electronics-section article h3,
+        .electronics-section article p {
+            /* Add margin */
+            margin: 5px 0;
+        }
+
+        .electronics-title {
+            text-align: center;
+            color: aquamarine;
+            margin-top: 20px;
+            /* Adjust as needed */
+
+            /* For Clothing*/
+        }
+
+        #clothing {
+            margin-left: 150px;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            /* Enable horizontal scrolling */
+            gap: 20px;
+            /* Add space between items */
+
+        }
+
+        .clothing-section {
+            /* Remove the margin and border */
+            margin: 0;
+            border: none;
+            /* Add overflow-x to handle horizontal scrolling */
+            overflow-x: auto;
+        }
+
+        .clothing-section article {
+            /* Adjust width and height of each item */
+            width: 200px;
+            height: 300px;
+            /* Add margin and padding */
+            margin: 0;
+            padding: 10px;
+            /* Add border and border-radius */
+            border: 1px solid aquamarine;
+            border-radius: 10px;
+            /* Center align content */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Change background color */
+            background-color: #fff;
+        }
+
+        .clothing-section article img {
+            /* Adjust size of product image */
+            width: 150px;
+            height: 150px;
+            /* Add margin */
+            margin-bottom: 10px;
+        }
+
+        .clothing-section article h3,
+        .clothing-section article p {
+            /* Add margin */
+            margin: 5px 0;
+        }
+
+        .clothing-title {
+            text-align: center;
+            color: aquamarine;
+            margin-top: 20px;
+            /* Adjust as needed */
+
+            /* For Grocery */
+        }
+
+        #grocery {
+            margin-left: 150px;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            /* Enable horizontal scrolling */
+            gap: 20px;
+            /* Add space between items */
+
+        }
+
+        .grocery-section {
+            /* Remove the margin and border */
+            margin: 0;
+            border: none;
+            /* Add overflow-x to handle horizontal scrolling */
+            overflow-x: auto;
+        }
+
+        .grocery-section article {
+            /* Adjust width and height of each item */
+            width: 200px;
+            height: 300px;
+            /* Add margin and padding */
+            margin: 0;
+            padding: 10px;
+            /* Add border and border-radius */
+            border: 1px solid aquamarine;
+            border-radius: 10px;
+            /* Center align content */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Change background color */
+            background-color: #fff;
+        }
+
+        .grocery-section article img {
+            /* Adjust size of product image */
+            width: 150px;
+            height: 150px;
+            /* Add margin */
+            margin-bottom: 10px;
+        }
+
+        .grocery-section article h3,
+        .grocery-section article p {
+            /* Add margin */
+            margin: 5px 0;
+        }
+
+        .grocery-title {
+            text-align: center;
+            color: aquamarine;
+            margin-top: 20px;
+            /* Adjust as needed */
+        }
+
+        /* for Home and Garden */
+        #homegarden {
+            margin-left: 150px;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            /* Enable horizontal scrolling */
+            gap: 20px;
+            /* Add space between items */
+
+        }
+
+        .homegarden-section {
+            /* Remove the margin and border */
+            margin: 0;
+            border: none;
+            /* Add overflow-x to handle horizontal scrolling */
+            overflow-x: auto;
+        }
+
+        .homegarden-section article {
+            /* Adjust width and height of each item */
+            width: 200px;
+            height: 300px;
+            /* Add margin and padding */
+            margin: 0;
+            padding: 10px;
+            /* Add border and border-radius */
+            border: 1px solid aquamarine;
+            border-radius: 10px;
+            /* Center align content */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Change background color */
+            background-color: #fff;
+        }
+
+        .homegarden-section article img {
+            /* Adjust size of product image */
+            width: 150px;
+            height: 150px;
+            /* Add margin */
+            margin-bottom: 10px;
+        }
+
+        .homegarden-section article h3,
+        .homegarden-section article p {
+            /* Add margin */
+            margin: 5px 0;
+        }
+
+        .homegarden-title {
+            text-align: center;
+            color: aquamarine;
+            margin-top: 20px;
+            /* Adjust as needed */
+        }
+
+        /* for books */
+        #movies {
+            margin-left: 150px;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            /* Enable horizontal scrolling */
+            gap: 20px;
+            /* Add space between items */
+
+        }
+
+        .movies-section {
+            /* Remove the margin and border */
+            margin: 0;
+            border: none;
+            /* Add overflow-x to handle horizontal scrolling */
+            overflow-x: auto;
+        }
+
+        .movies-section article {
+            /* Adjust width and height of each item */
+            width: 200px;
+            height: 300px;
+            /* Add margin and padding */
+            margin: 0;
+            padding: 10px;
+            /* Add border and border-radius */
+            border: 1px solid aquamarine;
+            border-radius: 10px;
+            /* Center align content */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Change background color */
+            background-color: #fff;
+        }
+
+        .movies-section article img {
+            /* Adjust size of product image */
+            width: 150px;
+            height: 150px;
+            /* Add margin */
+            margin-bottom: 10px;
+        }
+
+        .movies-section article h3,
+        .movies-section article p {
+            /* Add margin */
+            margin: 5px 0;
+        }
+
+        .movies-title {
+            text-align: center;
+            color: aquamarine;
+            margin-top: 20px;
+            /* Adjust as needed */
+        }
+
+        /* sports */
+        #sports {
+            margin-left: 150px;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            /* Enable horizontal scrolling */
+            gap: 20px;
+            /* Add space between items */
+
+        }
+
+        .sports-section {
+            /* Remove the margin and border */
+            margin: 0;
+            border: none;
+            /* Add overflow-x to handle horizontal scrolling */
+            overflow-x: auto;
+        }
+
+        .sports-section article {
+            /* Adjust width and height of each item */
+            width: 200px;
+            height: 300px;
+            /* Add margin and padding */
+            margin: 0;
+            padding: 10px;
+            /* Add border and border-radius */
+            border: 1px solid aquamarine;
+            border-radius: 10px;
+            /* Center align content */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Change background color */
+            background-color: #fff;
+        }
+
+        .sports-section article img {
+            /* Adjust size of product image */
+            width: 150px;
+            height: 150px;
+            /* Add margin */
+            margin-bottom: 10px;
+        }
+
+        .sports-section article h3,
+        .sports-section article p {
+            /* Add margin */
+            margin: 5px 0;
+        }
+
+        .sports-title {
+            text-align: center;
+            color: aquamarine;
+            margin-top: 20px;
+            /* Adjust as needed */
+        }
+
+        /* for kids */
+        #kids {
+            margin-left: 150px;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            /* Enable horizontal scrolling */
+            gap: 20px;
+            /* Add space between items */
+
+        }
+
+        .kids-section {
+            /* Remove the margin and border */
+            margin: 0;
+            border: none;
+            /* Add overflow-x to handle horizontal scrolling */
+            overflow-x: auto;
+        }
+
+        .kids-section article {
+            /* Adjust width and height of each item */
+            width: 200px;
+            height: 300px;
+            /* Add margin and padding */
+            margin: 0;
+            padding: 10px;
+            /* Add border and border-radius */
+            border: 1px solid aquamarine;
+            border-radius: 10px;
+            /* Center align content */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Change background color */
+            background-color: #fff;
+        }
+
+        .kids-section article img {
+            /* Adjust size of product image */
+            width: 150px;
+            height: 150px;
+            /* Add margin */
+            margin-bottom: 10px;
+        }
+
+        .kids-section article h3,
+        .kids-section article p {
+            /* Add margin */
+            margin: 5px 0;
+        }
+
+        .kids-title {
+            text-align: center;
+            color: aquamarine;
+            margin-top: 20px;
+            /* Adjust as needed */
+        }
+         /* Footer styles */
+         .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 50px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: aquamarine;
+        }
+
+        .footer-text {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">LocalGoods</div>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search for products...">
+            <button class="search-button"><i class="search-icon">&#128269;</i></button>
+        </div>
+        <div class="navbar-links">
+            <a href="#">Help & Support</a>
+            <a href="#">Wishlist</a>
+            <a href="#" data-text="Notifications">
+                <img src="icons/notifications.png" alt="Notifications" class="notifications-icon">
+                <span class="text">Notifications</span>
+            </a>
+            <a href="cart.html" data-text="Add to Cart">
+                <img src="icons/cart.png" alt="Cart" class="cart-icon">
+                <span class="text">Cart</span>
+            </a>
+            <a href="login-signup.html" data-text="Account">
+                <img src="icons/user.png" alt="Account" class="account-icon">
+                <span class="text">Account</span>
+            </a>
+
+
+        </div>
+    </div>
+    <h2 class="category-title">Explore by Category :</h2>
+    <div class="category-section">
+        <div class="category-links">
+            <a href="#">Electronics</a>
+            <a href="#">Clothing</a>
+            <a href="#">Home & Garden</a>
+            <a href="#">Toys & Games</a>
+            <a href="#">Books</a>
+            <a href="#">Sports & Outdoors</a>
+        </div>
+    </div>
+    <div class="greet">Welcome to LocalGoods.com</div>
+    <div class="intro-line">A perfect destination to buy any product you need from the offline store of your city and
+        get it delivered at home for free.</div>
+
+    <div class="electronics-section">
+        <h2 class="electronics-title">Electronics</h2>
+        <section id="electronics">
+            <article class="item-1">
+                <img src="electronics/samsunglaptop.png" alt="Product 1">
+                <h3>Samsung Galaxy Book </h3>
+                <p>16GB/512GB, Intel Core i9, Windows 11, 5 Years Warranty</p>
+                <p>Price: $XX.XX</p>
+            </article>
+
+            <article class="item-2">
+                <img src="electronics/galaxys21.png" alt="Product 2">
+                <h3>Samsung Galaxy S21</h3>
+                <p>Dynamic AMOLED 2X Display,
+                    Snapdragon 888 Processor,
+                </p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-3">
+                <img src="electronics/galaxywatch.png" alt="Product 3">
+                <h3>Samsung Galaxy Watch</h3>
+                <p>Amoled Display, Aluminium build, Exynos Processor</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-4">
+                <img src="electronics/sonyheadphones.png" alt="Product 4">
+                <h3>Sony Headphones</h3>
+                <p>Wirless Connectivity, Bluetooth 6.2, 5.6mm drivers</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-5">
+                <img src="electronics/refrigerator.png" alt="Product 5">
+                <h3>Samsung Refrigerator</h3>
+                <p>Duble Door, Antidust, Carbon finish, 323hdp motors, Nitrogen level checks</p>
+                <p>Price: $XX.XX</p>
+            </article>
+
+        </section>
+    </div>
+
+    <div class="clothing-section">
+        <h2 class="clothing-title">Clothing</h2>
+        <section id="clothing">
+            <article class="item-1">
+                <img src="clothing/saree.png" alt="Product 1">
+                <h3>Eastern Saree</h3>
+                <p>Silk Fabric Saree, from Urbanic</p>
+                <p>Price: $XX.XX</p>
+            </article>
+
+            <article class="item-2">
+                <img src="clothing/shirt.png" alt="Product 2">
+                <h3>Peter England Shirts</h3>
+                <p>Cotton fabric, Handmade, directly from outlet, Available in L,XL and XXL sizes only</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-3">
+                <img src="clothing/jeans.png" alt="Product 3">
+                <h3>Urbanic Jeans</h3>
+                <p>Stretchable jeans with cotton made fabrications and art.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-4">
+                <img src="clothing/shoes.png" alt="Product 4">
+                <h3>Nike Core 2 Shoes</h3>
+                <p>Original Nike core 2 shoes with customizable soul, Soft coushun included.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-5">
+                <img src="clothing/caps.png" alt="Product 5">
+                <h3>Nike Caps</h3>
+                <p>White color, Adjustable straps, Heat radiant soft soul.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+        </section>
+    </div>
+
+    <div class="grocery-section">
+        <h2 class="grocery-title">Grocery</h2>
+        <section id="grocery">
+            <article class="item-1">
+                <img src="grocery/atta.png" alt="Product 1">
+                <h3>Chakki Fresh Atta</h3>
+                <p>Fresh Grinded atta from Sunfoil, With Minearals, low fats.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+
+            <article class="item-2">
+                <img src="grocery/oil.png" alt="Product 2">
+                <h3>Soyabean Oil</h3>
+                <p>Refined Soyabean Oil, mineralss, low fats.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-3">
+                <img src="grocery/biscuits.png" alt="Product 3">
+                <h3>Parle Biscuits</h3>
+                <p>Glutene free Biscuits, low carbohydrates, 500gm.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-4">
+                <img src="grocery/cups.png" alt="Product 4">
+                <h3>TATA Cup set</h3>
+                <p>TEA cup sets, 8 Pieces, Glass designs.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-5">
+                <img src="grocery/cooker.png" alt="Product 5">
+                <h3>Prestige Cooker</h3>
+                <p>Stainless steel cookers, Fibre ring.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+        </section>
+    </div>
+
+    <div class="homegarden-section">
+        <h2 class="homegarden-title">Home & Garden</h2>
+        <section id="homegarden">
+            <article class="item-1">
+                <img src="homegarden/chair.png" alt="Product 1">
+                <h3>IKEA Office Chair</h3>
+                <p>Office chair IKEA, Reclinig Mechanism, Soft cushons for neck.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+
+            <article class="item-2">
+                <img src="homegarden/table.png" alt="Product 2">
+                <h3>IKEA Tea Table</h3>
+                <p>Sandalwood Tea Table, Premium Look, Hard legs.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-3">
+                <img src="homegarden/lamps.png" alt="Product 3">
+                <h3>Study lamps</h3>
+                <p>Study lamp, Panasonic, 40W bulb, 3 years warranty</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-4">
+                <img src="homegarden/plants.png" alt="Product 4">
+                <h3>Decoration Plants</h3>
+                <p>PLastic Decoration plants, fibre base.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-5">
+                <img src="homegarden/mirror.png" alt="Product 5">
+                <h3>Table Mirror IKEA</h3>
+                <p>STAINED mirror for house.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+        </section>
+    </div>
+
+    <div class="movies-section">
+        <h2 class="movies-title">Books</h2>
+        <section id="movies">
+            <article class="item-1">
+                <img src="movies/interstellar.png" alt="Product 1">
+                <h3>Interstellar Movie</h3>
+                <p>A Sci-fi Movie, from driector Chritopher Nolan, 2024, 4k</p>
+                <p>Price: $XX.XX</p>
+            </article>
+
+            <article class="item-2">
+                <img src="movies/gravity.png" alt="Product 2">
+                <h3>Gravity Movie</h3>
+                <p>Full HD movie, 4k support, 2000pixels, Gravity, sci-fi.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-3">
+                <img src="movies/deadpool.png" alt="Product 3">
+                <h3>Deadpool Movie</h3>
+                <p>Marvel's Deadpool, Sam Raimi, Ryan Reynolds, Hugh Jackman.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-4">
+                <img src="movies/avengers.png" alt="Product 4">
+                <h3>Avengers Infinity War</h3>
+                <p>Russo Brothers presents "Avengers Infinity War", 4K.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-5">
+                <img src="movies/land.png" alt="Product 5">
+                <h3>La La Land Movie</h3>
+                <p>Romantic Genre, Ryan Gosling, Deepika Padukone.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+        </section>
+    </div>
+
+    <div class="sports-section">
+        <h2 class="sports-title">Sports and Outdoors</h2>
+        <section id="sports">
+            <article class="item-1">
+                <img src="sports/bat.png" alt="Product 1">
+                <h3>TENDULKAR BAT</h3>
+                <p>T20 World Cup Bat, Used by Sachin Tendulkar, Onetime use only, rubber grip.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+
+            <article class="item-2">
+                <img src="sports/basketball.png" alt="Product 2">
+                <h3>TATA BASKETBALL</h3>
+                <p>High-Quality Basketball, Pressurized, 30X30 diameter.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-3">
+                <img src="sports/crickethelmet.png" alt="Product 3">
+                <h3>Safety Cricket Helmet</h3>
+                <p>ICC World Cup used Helmet, from MAHI Bhai, Metal buil, Steel straps, Rubber padding.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-4">
+                <img src="sports/gloves.png" alt="Product 4">
+                <h3>Maniac Gloves</h3>
+                <p>Sport Keeping Gloves, Finger Cut, Rubber fabrication, Cotton soft cushun.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-5">
+                <img src="sports/badminton.png" alt="Product 5">
+                <h3>Lincoln Badminton</h3>
+                <p>Silicon strapped badminton, Lincoln, Two-piece, one shuttle.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+        </section>
+    </div>
+
+    <div class="kids-section">
+        <h2 class="kids-title">Toys & Games</h2>
+        <section id="kids">
+            <article class="item-1">
+                <img src="kids/gta.png" alt="Product 1">
+                <h3>GTA V/5</h3>
+                <p>Grand Theft Auto V, Open World Game, PC/DVD/ONlINE available.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+
+            <article class="item-2">
+                <img src="kids/dominos.png" alt="Product 2">
+                <h3>Kinder Dominos</h3>
+                <p>Dominos Game, White hat jr, 4x3 size.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-3">
+                <img src="kids/cube.png" alt="Product 3">
+                <h3>Adidaas Rubix Cube</h3>
+                <p>Rubix cube, VIBGYOR included, fribre build, Lock mechanis.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-4">
+                <img src="kids/monopoly.png" alt="Product 4">
+                <h3>Monopoly</h3>
+                <p>Best Business game, 4-player game, Plastic build, Extra charts and money.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+            <article class="item-5">
+                <img src="kids/videogame.png" alt="Product 5">
+                <h3>Lego Ninjas</h3>
+                <p>DC - Lego Ninas Vide Game, 4K resolution, Two-player game, DVD.</p>
+                <p>Price: $XX.XX</p>
+            </article>
+        </section>
+    </div>
+
+    <!-- Add more sections for other categories as needed -->
+
+    <!-- Footer section -->
+    <div class="footer">
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <div class="footer-text">
+            &copy; 2024 LocalGoods. All rights reserved.
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
